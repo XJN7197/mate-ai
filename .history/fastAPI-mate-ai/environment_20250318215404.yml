@@ -1,0 +1,13 @@
+name: mate-ai-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pip
+  - pip:
+    - fastapi>=0.68.0,<0.69.0
+    - uvicorn>=0.15.0,<0.16.0
+    - httpx>=0.24.0
+    - motor>=3.1.1,<4.0.0
+    - pydantic>=2.7.4

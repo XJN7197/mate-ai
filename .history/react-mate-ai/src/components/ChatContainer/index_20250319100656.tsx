@@ -44,9 +44,8 @@ const ChatContainer: React.FC = () => {
         })
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+      if (!response.ok) {  // 添加错误处理
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
@@ -61,11 +60,10 @@ const ChatContainer: React.FC = () => {
     } catch (error) {
       console.error('Failed to send message:', error);
       // 可以添加错误提示
-      const errorMessage = error instanceof Error ? error.message : '抱歉，发生了一些错误，请稍后再试。';
       setMessages(prev => [...prev, {
         id: Date.now().toString(),
         type: 'ai',
-        content: errorMessage
+        content: '抱歉，发生了一些错误，请稍后再试。'
       }]);
     } finally {
       setIsLoading(false);
